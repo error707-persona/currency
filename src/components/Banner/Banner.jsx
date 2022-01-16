@@ -4,9 +4,13 @@ import Carousel from './Carousel';
 const useStyles = makeStyles(()=>({
 
     banner:{
-        backgroundImage:"url(./banner3.jpg)",
-        
-    objectFit: 'cover'
+        backgroundImage:"url(./banner6.jpg)",
+        backgroundRepeat: "no-repeat",
+			backgroundPosition: "center center",
+			backgroundSize: "cover",
+			backgroundAttachment: "fixed",
+			height: "100%"
+    
     },
     bannerContent:{
         height:400,
@@ -30,7 +34,9 @@ const Banner = () => {
                     style={{
                         fontheight:"bold",
                         marginBottom: 15,
-                        fontFamily:"Alegreya Sans SC"    
+                        fontFamily:"Alegreya Sans SC"  ,
+                        color:"white",
+                        textAlign:"center"
                     }}
                     >
                         Crypto Currency
@@ -38,17 +44,19 @@ const Banner = () => {
                     <Typography
                     variant="subtitle2"
                     style={{
-                        color:"darkgrey",
+                        color:"white",
                         textTransform:"capitlaize",
                         fontheight:"bold",
                         marginBottom: 15, 
+                        textAlign:"center"
 
                     }}
                     >
-                        Get all the stuff you wannt
+                        You Own crypto currency tracker platform
                     </Typography>
                 </div>
                 <Carousel/>
+              
             </Container>
         </div>
     )

@@ -1,7 +1,7 @@
 import { AppBar, Container, MenuItem, Select, Toolbar, Typography } from '@material-ui/core'
 import { makeStyles } from '@material-ui/styles'
 import React from 'react'
-import {createTheme} from "@material-ui/core"
+import {createTheme, Avatar} from "@material-ui/core"
 import {ThemeProvider} from "@material-ui/core"
 import {useNavigate} from "react-router-dom"
 
@@ -10,20 +10,20 @@ import { CryptoState } from './Cryptocontext'
 const useStyles = makeStyles(()=>({
     title:{
     flex:1,
-    backgroundColor:"#37383C",
-    color:"#FF54F8",
+    backgroundColor:"#442ACE",
+    color:"white",
     fontWeight:"bold",
     cursor:"pointer",
     fontFamily: "Alegreya Sans SC"
     },
     AppBar:{
-        backgroundColor:"#37383C"
+        backgroundColor:"#442ACE"
     }
 }))
 const darkTheme = createTheme({
     palette:{
         primary:{
-            main:"#fff",
+            main:"#442ACE",
         },
         type:"dark",
     },
@@ -43,6 +43,7 @@ console.log(currency)
         <AppBar className={classes.AppBar}>
             <Container color="transparent" position="static">
                 <Toolbar>
+                    <Avatar src="company2.png"/>
                     <Typography className={classes.title}
                     onClick={()=>navigate('/')}>
                         Crypton
