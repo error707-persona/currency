@@ -1,4 +1,4 @@
-import { colors, makeStyles } from '@material-ui/core'
+import { makeStyles } from '@material-ui/core'
 import axios from 'axios'
 import { Link } from '@material-ui/core'
 import {React, useState, useEffect} from 'react'
@@ -48,6 +48,7 @@ const Carousel = () => {
 
     useEffect(() => {
         fetchTrendingCoins();
+        //eslint-disable-next-line react-hooks/exhaustive-deps
     }, [currency]);
     
     const items = trending.map((coin)=>{

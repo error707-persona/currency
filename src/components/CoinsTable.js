@@ -8,6 +8,7 @@ import {
     LinearProgress,
     TableCell,
     TableBody,
+    Link,
     Table,TableHead, TableRow, makeStyles } from '@material-ui/core';
 import { Pagination } from '@material-ui/lab';
 import axios from 'axios';
@@ -39,6 +40,7 @@ const CoinsTable = () => {
     console.log(coins);
     
     useEffect(()=>{ 
+        
         fecthCoins();
 
     }, [currency]);
@@ -114,11 +116,11 @@ const CoinsTable = () => {
                 loading?(
                     <LinearProgress style={{backgroundColor:"#442ACE"}}/>
                 ):<Table className={classes.table}>
-                    <TableHead style={{backgroundColor:"#442ACE"}}>
+                    <TableHead style={{backgroundColor:"#442ACE", color:"white"}}>
                         {["Coin", "Price", "24h Change", "Market Cap"].map((head)=>(
                         <TableCell 
                         style=
-                        {{color:"black", 
+                        {{color:"white", 
                         fontWeight:"700", 
                         fontFamily:"fantasy"}} 
                         key={head}
@@ -138,6 +140,7 @@ const CoinsTable = () => {
                                 onClick={()=>history.push(`/coins/${row.id}`)}
                                 className={classes.row}
                                 key={row.name}>
+                                    <Link to="/coinpage" ></Link>
                                     <TableCell component='th' scope="row" className={classes.tablecell} style={{
                                         display:"flex",
                                         gap:15,

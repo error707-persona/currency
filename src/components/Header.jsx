@@ -1,4 +1,4 @@
-import { AppBar, Container, MenuItem, Select, Toolbar, Typography } from '@material-ui/core'
+import { AppBar, Container, MenuItem, Select, Toolbar, Typography,Menu,Link } from '@material-ui/core'
 import { makeStyles } from '@material-ui/styles'
 import React from 'react'
 import {createTheme, Avatar} from "@material-ui/core"
@@ -27,7 +27,7 @@ const darkTheme = createTheme({
         },
         type:"dark",
     },
-})
+});
 
 
 
@@ -48,6 +48,7 @@ console.log(currency)
                     onClick={()=>navigate('/')}>
                         Crypton
                     </Typography>
+                    
                     <Select variant="outlined"
                     style={{
                         width:100,
