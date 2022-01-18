@@ -14,7 +14,7 @@ import { Pagination } from '@material-ui/lab';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { Classnames } from 'react-alice-carousel';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, NavLink } from 'react-router-dom';
 import { CoinList } from '../config/api';
 import { numberWithCommas } from './Banner/Carousel';
 import {CryptoState } from "./Cryptocontext"
@@ -27,7 +27,7 @@ const CoinsTable = () => {
     const [loading, setloading] = useState(false);
     const [search, setsearch] = useState("");
     const [page, setpage] = useState(1);
-    const history = useNavigate()
+    const navigate = useNavigate()
 
     const {currency, symbol} = CryptoState();
     
@@ -137,10 +137,11 @@ const CoinsTable = () => {
                             const profit = row.price_change_percentage_24h>0;
                             return (
                                 <TableRow
-                                onClick={()=>history.push(`/coins/${row.id}`)}
+                                onClick={()=>navigate(`/coins/${row.id}`)}
                                 className={classes.row}
                                 key={row.name}>
-                                    <Link to="/coinpage" ></Link>
+                                    {/* navigate('/componentB',{state:{id:1,name:'sabaoon'}}) */}
+                                    {/* <NavLink to={`/coins/${row.id}`} exact/> */}
                                     <TableCell component='th' scope="row" className={classes.tablecell} style={{
                                         display:"flex",
                                         gap:15,
