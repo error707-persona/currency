@@ -19,14 +19,23 @@ const useStyles = makeStyles(()=>({
         paddingTop:100,
         fontFamily:"Alegreya Sans SC",
         justifyContent:"space-around",
+    },
+    darkOverlay:{
+       
+        backgroundColor: "rgba(0, 0, 0, 0.65)",
+      
+        
+          
+
     }
 }));
 
 const Banner = () => {
     const classes = useStyles();
     return (
-
+        
         <div className={classes.banner}>
+            <div className={classes.darkOverlay}>
             <Container className={classes.bannerContent}>
                 <div className={classes.tagline}>
                     <Typography
@@ -58,6 +67,7 @@ const Banner = () => {
                 <Carousel/>
               
             </Container>
+        </div>
         </div>
     )
 }
