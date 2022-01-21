@@ -8,13 +8,12 @@ import {
     LinearProgress,
     TableCell,
     TableBody,
-    Link,
+
     Table,TableHead, TableRow, makeStyles } from '@material-ui/core';
 import { Pagination } from '@material-ui/lab';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
-import { Classnames } from 'react-alice-carousel';
-import { useNavigate, NavLink } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { CoinList } from '../config/api';
 import { numberWithCommas } from './Banner/Carousel';
 import {CryptoState } from "./Cryptocontext"
@@ -23,20 +22,20 @@ import {CryptoState } from "./Cryptocontext"
 const CoinsTable = () => {
 
 
-    const [coins, setCoins] = useState([])
-    const [loading, setloading] = useState(false);
+    // const [coins, setCoins] = useState([])
+    // const [loading, setloading] = useState(false);
     const [search, setsearch] = useState("");
     const [page, setpage] = useState(1);
     const navigate = useNavigate()
 
-    const {currency, symbol} = CryptoState();
+    const {currency, symbol, coins, loading, fecthCoins} = CryptoState();
     
-    const fecthCoins = async () =>{
-        setloading(true)
-        const {data} =await axios.get(CoinList(currency));
-        setCoins(data);
-        setloading(false);
-    };
+    // const fecthCoins = async () =>{
+    //     setloading(true)
+    //     const {data} =await axios.get(CoinList(currency));
+    //     setCoins(data);
+    //     setloading(false);
+    // };
     console.log(coins);
     
     useEffect(()=>{ 
@@ -64,7 +63,6 @@ const CoinsTable = () => {
     const useStyles = makeStyles(()=>({
         table:{
             borderTopWidth: 1, borderStyle: 'solid', borderRadius:"5"
-           
         },
         row:{
             backgroundColor:"#1B1A23",
@@ -124,7 +122,7 @@ const CoinsTable = () => {
                         fontWeight:"700", 
                         fontFamily:"fantasy"}} 
                         key={head}
-                        align={head==="Coin"?"":"right"}>
+                        align={head==="Coin"?"inherit":"right"}>
                             {head}
                         </TableCell>
                         )
@@ -142,7 +140,7 @@ const CoinsTable = () => {
                                 key={row.name}>
                                     {/* navigate('/componentB',{state:{id:1,name:'sabaoon'}}) */}
                                     {/* <NavLink to={`/coins/${row.id}`} exact/> */}
-                                    <TableCell component='th' scope="row" className={classes.tablecell} style={{
+                                    <TableCell scope="row" className={classes.tablecell} style={{
                                         display:"flex",
                                         gap:15,
                                        

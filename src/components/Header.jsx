@@ -1,11 +1,12 @@
-import { AppBar, Container, MenuItem, Select, Toolbar, Typography,Menu,Link } from '@material-ui/core'
+import { AppBar, Container, MenuItem, Select, Toolbar, Typography,Menu,Link, ButtonBase } from '@material-ui/core'
 import { makeStyles } from '@material-ui/styles'
 import React from 'react'
 import {createTheme, Avatar} from "@material-ui/core"
 import {ThemeProvider} from "@material-ui/core"
 import {useNavigate} from "react-router-dom"
-
+import AuthModal from "./AuthModal"
 import { CryptoState } from './Cryptocontext'
+import SelectButton from './SelectButton'
 
 const useStyles = makeStyles(()=>({
     title:{
@@ -49,6 +50,8 @@ console.log(currency)
                         Crypton
                     </Typography>
                     
+                      
+                    
                     <Select variant="outlined"
                     style={{
                         width:100,
@@ -63,6 +66,7 @@ console.log(currency)
                         <MenuItem value={"INR"}>INR</MenuItem>
 
                     </Select>
+                    <AuthModal/>
                 </Toolbar>
             </Container>
         </AppBar>

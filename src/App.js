@@ -6,7 +6,9 @@ import Homepage from './components/Homepage';
 import { makeStyles } from '@material-ui/core';
 import CoinPage from './components/CoinPage';
 import Profile from './components/Profile';
-
+import Contactus from "./components/Contactus"
+import News from './components/News';
+import Alert from "./components/Alert"
 
 function App() {
   const useStyles= makeStyles(()=>({
@@ -28,10 +30,13 @@ function App() {
       <Route path="/" element={<Homepage/>} exact/>
       <Route path="/coins/:id" element={<CoinPage/>} exact/>
       <Route path="/profile" element={<Profile/>} exact/>
+      <Route path="/news" element={<News/>} exact/>
+      <Route path="/contactus" element={<Contactus/>} exact/>
      
       </Routes>
 
     </div>
+    <Alert/>
     </BrowserRouter>
   );
 }
