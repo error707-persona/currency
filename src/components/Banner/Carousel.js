@@ -7,7 +7,9 @@ import { CryptoState } from '../Cryptocontext'
 
 import {TrendingCoins} from "../../config/api"
 import AliceCarousel from 'react-alice-carousel'
+import { Navigate } from 'react-router-dom'
 
+const navigate = Navigate
 const useStyles = makeStyles((theme)=>({
     carousel:{
         height:"50%",
@@ -56,7 +58,9 @@ const Carousel = () => {
         let profit = coin.price_change_percentage_24h>=0;
 
         return (
-            <Link className={classes.carouselItem} to={`coins/${coin.id}`}>
+            <div className={classes.carouselItem} onClick={()=>navigate(`/coins/${coin.id}`)}>
+            <Link  to={`coins/${coin.id}`} >
+                
                 <img src={coin?.image}
                 alt={coin.name}
                 height="80"
@@ -75,7 +79,8 @@ const Carousel = () => {
 
                 </span>
                 </span>
-            </Link>
+               
+            </Link> </div>
         )
     })
     const responsive = {

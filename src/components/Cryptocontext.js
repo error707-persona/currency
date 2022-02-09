@@ -6,7 +6,7 @@ const Crypto = createContext()
 
 const Cryptocontext = ({children}) => {
     const [currency, setCurrency] = useState("INR");
-    const [symbol, setSymbol] =useState("X");
+    const [symbol, setSymbol] =useState("₹");
     const [coins, setCoins] = useState([])
     const [loading, setloading] = useState(false);
     const [user, setuser] = useState(null);
