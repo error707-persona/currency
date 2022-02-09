@@ -98,7 +98,7 @@ const CoinPage = () => {
               </Typography>
               <Typography variant="subtitle1" className={classes.description}>
                    {parse(coin?.description.en.split(". ")[0])}.
-                  {coin?.description.en.split(". ")[0]}.
+                   <div dangerouslySetInnerHTML={{ __html: coin?.description.en.split(". ")[0] }} />.
               </Typography>
             <div className={classes.marketData}>
                 <span style={{display:"flex"}}>
