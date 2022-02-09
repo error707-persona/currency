@@ -3,12 +3,14 @@ import './App.css';
 import Header from './components/Header';
 
 import Homepage from './components/Homepage';
-import { makeStyles } from '@material-ui/core';
+import { makeStyles, Snackbar } from '@material-ui/core';
 import CoinPage from './components/CoinPage';
 import Profile from './components/Profile';
 import Contactus from "./components/Contactus"
 import News from './components/News';
-import Alert from "./components/Alert"
+
+// import MuiAlert from "@material-ui/lab/Alert";
+import Alert from '@material-ui/lab/Alert';
 
 function App() {
   const useStyles= makeStyles(()=>({
@@ -36,8 +38,7 @@ function App() {
       </Routes>
 
     </div>
-    <Alert/>
-    
+ 
     </BrowserRouter>
   );
 }
