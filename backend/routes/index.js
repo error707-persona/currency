@@ -1,18 +1,8 @@
 var express = require('express');
 var router = express.Router();
 const userModel = require("../model/user");
-// const Joi = require('@hapi/joi')
-// var users = [
-//   {
-//     email:"abc@gmail.com",
-//     password:"password"
-//   }
-// ]
-// const schema = {
-//   name:Joi.string().min(6).required(),
-//   email:Joi.string().min(6).required().email(),
-//   password:Joi.string().min(6).required()
-// }
+const {authschema} =require("../model/validation")
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.send('index');
@@ -39,30 +29,42 @@ router.post('/login', async function(req, res, next) {
   }
 
   } catch (error) {
+    console.log(error)
     res.status(500).send(error);
   }
 
 });
 
 router.post('/signup', async function(req, res, next) {
-  
-  const users = await userModel.findOne({ email:req.body.email });
-  if (!users){
-  const user = new userModel(req.body);
-  
   try {
+  const result = await authschema.validateAsync({
+    email:req.body.email,
+    password:req.body.password
+  });
+  const users = await userModel.findOne({ email:result.email });
+  if ((!users) && (result.password==req.body.confirmpassword)){
+    
+  const user = new userModel({
+    email:result.email,
+    password:result.password
+  });
+  
+  
      user.save();
     res.send({
       message: "Account Created Successfully"
     });
-  } catch (error) {
-    res.status(500).send(error);
   }
-} else{
+  else{
 res.send({
   message:"User Already Exists try logging in"
 });
 }
+}catch (error) {
+  if (error.isJoi==true) error.status=422
+  res.send(error);
+}
 });
+
 
 module.exports = router;
