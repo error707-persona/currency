@@ -28,6 +28,12 @@ userRouter.post("/signin", async (req, res) => {
 
 // Sign up
 userRouter.post("/signup", async (req, res) => {
+  // Check if user already exists
+  if (await User.findOne({ email: req.body.email })) {
+    res.status(401).send({ message: "Email already exists." });
+    return;
+  }
+
   // Create User
   const user = new User({
     name: req.body.name,
@@ -45,6 +51,17 @@ userRouter.post("/signup", async (req, res) => {
     email: createdUser.email,
     token: generateToken(createdUser),
   });
+});
+
+userRouter.post("/", isAuth, async (req, res) => {
+  const user = await User.findOne({ email: req.user.email });
+  if (user)
+    res.send({
+      _id: user._id,
+      name: user.name,
+      email: user.email,
+    });
+  return;
 });
 
 module.exports = userRouter;
