@@ -4,7 +4,7 @@ const path = require("path");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 const mongoose = require("mongoose");
-const usersRouter = require("./routes/userRouter");
+const userRouter = require("./routes/userRouter");
 const dotenv = require("dotenv");
 
 dotenv.config();
@@ -49,7 +49,7 @@ app.set("view engine", "jade");
 app.use(express.static(path.join(__dirname, "public")));
 
 // Routes
-app.use("/users", usersRouter);
+app.use("/users", userRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
