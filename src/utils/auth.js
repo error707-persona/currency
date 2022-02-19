@@ -34,12 +34,6 @@ const signup = (username, email, password) =>
     .then((res) => {
       putToken(res.data.token);
 
-      setAlert({
-        open: true,
-        message: `Welcome to Crypton, ${username} !`,
-        type: "success",
-      });
-
       // console.log(res);
 
       // console.log(`\nEmail: ${res.email}\nToken : ${res.token}`);
@@ -61,12 +55,6 @@ const login = (email, password) =>
     })
     .then((res) => {
       putToken(res.data.token);
-
-      setAlert({
-        open: true,
-        message: `Welcome to Crypton, ${res.data.name} !`,
-        type: "success",
-      });
 
       // console.log(res);
 
