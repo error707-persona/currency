@@ -1,84 +1,72 @@
-import { TextField, Box, Button } from '@material-ui/core';
-import axios from 'axios';
-import React from 'react';
-import { useState } from 'react';
+import { TextField, Box, Button } from "@material-ui/core";
+import React from "react";
+import { useState } from "react";
+import { CryptoState } from "./Cryptocontext";
+import { login } from "../utils/auth";
 
+const Login = ({ handleClose }) => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
+  const { alert, setAlert } = CryptoState();
 
-const Login = ({handleClose}) => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
 
-    const [email, setemail] = useState("");
-    const [password, setpassword] = useState("");
-    
+    login(email, password);
 
-    // const handleSubmit=()=>{
-      
-    // }
-    // const handleClose=()=>{
+    // let success = true;
+    // if (success ) handleClose();
+  };
 
-    // }
   return (
-  <Box style={{display: "flex", flexDirection:"column", gap:"20px"}}>
-  <form onSubmit={(e)=>login(e)}>
-  <Box
-  p = {3}
- >
-      <TextField
-      variant="outlined"
-      id="email"
-      type="email"
-      label="Enter Email"
-      placeholder='Enter email'
-      value={email}
-      fullWidth
-      onChange={(e)=>setemail(e.target.value)}
+    <form onSubmit={(e) => handleSubmit(e)}>
+      <Box
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          gap: "2rem",
+          padding: "3rem 2rem",
+        }}
       >
-          
-      </TextField>
-      <br/>
-      <TextField
-      variant="outlined"
-      id="password"
-      type="password"
-      label="Enter Password"
-      placeholder='Enter Password'
-      value={password}
-      fullWidth
-      onChange={(e)=>setpassword(e.target.value)}
-      >
-          
-      </TextField>
-      <br/>
-      <Button
-      variant="contained"
-      type="submit"
-      size="large"
-      style={{backgroundColor:"white"}}
+        <Box
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "1rem",
+          }}
+        >
+          <TextField
+            variant="outlined"
+            id="login-email"
+            type="email"
+            label="Email"
+            placeholder="Email"
+            color="secondary"
+            value={email}
+            fullWidth
+            onChange={(e) => setEmail(e.target.value)}
+          />
 
-      >Login</Button>
-      
-  </Box>
-  </form>
+          <TextField
+            variant="outlined"
+            id="login-password"
+            type="password"
+            label="Password"
+            placeholder="Password"
+            color="secondary"
+            value={password}
+            fullWidth
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </Box>
 
-  </Box>
-  )
-}
-
-function login(e){
-  e.preventDefault();
-  let request = {
-    email:document.getElementById('email').value,
-    password:document.getElementById('password').value
-  }
-  axios.post('http://localhost:3000/login', request)
-  .then(resp=>{
-    alert(resp.data.message);
-  
-   
-  })
-  .catch(err=>{
-    console.log(err);
-  })
-}
+        <Button variant="contained" type="submit" color="secondary">
+          Login
+        </Button>
+      </Box>
+    </form>
+  );
+};
 
 export default Login;

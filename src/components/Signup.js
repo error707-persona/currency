@@ -1,104 +1,115 @@
-import React from 'react';
-import { useState } from 'react';
-import { Box, TextField, Button } from '@material-ui/core';
-import { CryptoState } from './Cryptocontext';
-import axios from 'axios';
-const Signup = ({handleClose}) => {
-    const [email, setemail] = useState("");
-    const [password, setpassword] = useState("");
-    const [confirmpassword, setconfirmpassword] = useState("");
-  const {setAlert} = CryptoState()
-    const handleSubmit=()=>{
-        if (password!==confirmpassword){
-          setAlert({
-            open:true,
-            message: "Password do no match",
-            type:"error",
-          })
-          return;
-        }
-        // try{
-        //   const result = await createUserWithEmailAndPassword();
-        //     console.log(result);
-        //     handleClose();
-        // }catch(error){
-        //   setAlert({
-        //     open:true,
-        //     message: error.message,
-        //     type: "error",
+import React, { useEffect, useState } from "react";
+import { Box, TextField, Button } from "@material-ui/core";
+import { CryptoState } from "./Cryptocontext";
+import { signup } from "../utils/auth";
 
-        //   }
+const Signup = ({ handleClose }) => {
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+
+  const { alert, setAlert } = CryptoState();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (password !== confirmPassword) {
+      setAlert({
+        open: true,
+        message: "Passwords do no match",
+        type: "error",
+      });
+      return;
     }
-  return <Box
-  p = {3}
-  style={{display: "flex", flexDirection:"column", gap:"20px"}}
-  
-  >
-    <form onSubmit={(e)=>signup(e)}>
-      <TextField
-      variant="outlined"
-      type="email"
-      id="email"
-      label="Enter Email"
-      placeholder='Enter email'
-      value={email}
-      fullWidth
-      onChange={(e)=>setemail(e.target.value)}
+
+    signup(username, email, password);
+
+    // try{
+    //   const result = await createUserWithEmailAndPassword();
+    //     console.log(result);
+    //     handleClose();
+    // }catch(error){
+    //   setAlert({
+    //     open:true,
+    //     message: error.message,
+    //     type: "error",
+    //   }
+  };
+
+  return (
+    <form onSubmit={(e) => handleSubmit(e)}>
+      {/* Form */}
+      <Box
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          gap: "2rem",
+          padding: "3rem 2rem",
+        }}
       >
-          
-      </TextField>
-      <br/>
-      <TextField
-      variant="outlined"
-      type="password"
-      id="password"
-      label="Enter Password"
-      placeholder='Enter Password'
-      value={password}
-      fullWidth
-      onChange={(e)=>setpassword(e.target.value)}
-      >
-          
-      </TextField>
-      <br/>
-      <TextField
-      variant="outlined"
-      type="password"
-      id="confirmpassword"
-      label="Enter Confirm Password"
-      placeholder='Enter Confirm Password'
-      value={confirmpassword}
-      fullWidth
-      onChange={(e)=>setconfirmpassword(e.target.value)}
-      >
-          
-      </TextField>
-      <br/>
-      <Button
-      variant="contained"
-      size="large"
-      id="submit"
-      type="submit"
-      style={{backgroundColor:"white"}}
-      // onClick={handleSubmit}
-      >Sign Up</Button>
-      </form>
-  </Box>
+        <Box
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "1rem",
+          }}
+        >
+          <TextField
+            variant="outlined"
+            id="signup-username"
+            type="text"
+            label="Username"
+            placeholder="Username"
+            value={username}
+            color="secondary"
+            fullWidth
+            onChange={(e) => setUsername(e.target.value)}
+          />
+
+          <TextField
+            variant="outlined"
+            id="signup-email"
+            type="email"
+            label="Email"
+            placeholder="Email"
+            value={email}
+            color="secondary"
+            fullWidth
+            onChange={(e) => setEmail(e.target.value)}
+          />
+
+          <TextField
+            variant="outlined"
+            id="signup-password"
+            type="password"
+            label="Password"
+            placeholder="Password"
+            color="secondary"
+            value={password}
+            fullWidth
+            onChange={(e) => setPassword(e.target.value)}
+          />
+
+          <TextField
+            variant="outlined"
+            id="signup-confirmpassword"
+            type="password"
+            label="Confirm Password"
+            placeholder="Confirm Password"
+            color="secondary"
+            value={confirmPassword}
+            fullWidth
+            onChange={(e) => setConfirmPassword(e.target.value)}
+          />
+        </Box>
+
+        <Button variant="contained" type="submit" color="secondary">
+          Register
+        </Button>
+      </Box>
+    </form>
+  );
 };
-function signup(e){
-  e.preventDefault();
-  
-  let request = {
-    email:document.getElementById('email').value,
-    password:document.getElementById('password').value
-  }
-  axios.post('http://localhost:3000/signup', request)
-  .then(resp=>{
-    alert(resp.data.message);
-  })
-  .catch(err=>{
-    console.log(err);
-  })
-}
 
 export default Signup;
