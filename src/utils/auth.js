@@ -40,11 +40,6 @@ const signup = (username, email, password) =>
     })
     .catch((err) => {
       console.log(err.response);
-      setAlert({
-        open: true,
-        message: err.response.data.message,
-        type: "error",
-      });
     });
 
 const login = (email, password) =>
@@ -62,11 +57,6 @@ const login = (email, password) =>
     })
     .catch((err) => {
       console.log(err.response);
-      setAlert({
-        open: true,
-        message: err.response.data.message,
-        type: "error",
-      });
     });
 
 export { signup, login, getUser, getToken };
