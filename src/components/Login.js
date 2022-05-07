@@ -14,15 +14,7 @@ const Login = ({ handleClose }) => {
     e.preventDefault();
 
     login(email, password);
-    // if (password !== confirmPassword) {
-    //   setAlert({
-    //     open: true,
-    //     message: "Passwords do no match",
-    //     type: "error",
-    //   });
-
-    // let success = true;
-    // if (success ) handleClose();
+   
   };
 
   return (

@@ -44,6 +44,7 @@ const signup = (username, email, password) =>
     });
     const userinfoset = (user) => sessionStorage.setItem("user-info", JSON.stringify(user));
     const userinfo = () => sessionStorage.getItem("user-info");
+
 const login = (email, password) =>
   axios
     .post("http://localhost:5001/users/signin", {
@@ -62,5 +63,8 @@ const login = (email, password) =>
     .catch((err) => {
       console.log(err.response);
     });
+
+    
+
 
 export { signup, login, getUser, getToken, userinfo };
