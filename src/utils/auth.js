@@ -1,6 +1,5 @@
 import axios from "axios";
 
-
 const getToken = () => localStorage.getItem("crypton-auth-token");
 
 const putToken = (token) => localStorage.setItem("crypton-auth-token", token);
@@ -25,7 +24,7 @@ const getUser = () => {
   return user;
 };
 
-const signup = (username, email, password) =>
+const signup = (username, email, password, handleAlert) =>
   axios
     .post("http://localhost:5001/users/signup", {
       name: username,
@@ -37,15 +36,27 @@ const signup = (username, email, password) =>
 
       console.log(res);
 
+      handleAlert({
+        open: true,
+        type: "success",
+        message: "Account Created",
+      });
+
       // console.log(`\nEmail: ${res.email}\nToken : ${res.token}`);
     })
     .catch((err) => {
       console.log(err.response);
+      handleAlert({
+        open: true,
+        type: "error",
+        message: err.response.data.message,
+      });
     });
-    const userinfoset = (user) => sessionStorage.setItem("user-info", JSON.stringify(user));
-    const userinfo = () => sessionStorage.getItem("user-info");
+const userinfoset = (user) =>
+  sessionStorage.setItem("user-info", JSON.stringify(user));
+const userinfo = () => sessionStorage.getItem("user-info");
 
-const login = (email, password) =>
+const login = (email, password, handleAlert) =>
   axios
     .post("http://localhost:5001/users/signin", {
       email: email,
@@ -53,18 +64,28 @@ const login = (email, password) =>
     })
     .then((res) => {
       putToken(res.data.token);
-      let obj = {email: res.data.email, name: res.data.name, token: res.data.token}
-      userinfoset(obj)
-      
-      console.log(res);
+      let obj = {
+        email: res.data.email,
+        name: res.data.name,
+        token: res.data.token,
+      };
+      userinfoset(obj);
 
+      console.log(res);
+      handleAlert({
+        open: true,
+        type: "success",
+        message: `Welcome ${res.data.name}`,
+      });
       // console.log(`\nEmail: ${res.data.email}\nToken : ${res.data.token}`);
     })
     .catch((err) => {
       console.log(err.response);
+      handleAlert({
+        open: true,
+        type: "error",
+        message: err.response.data.message,
+      });
     });
-
-    
-
 
 export { signup, login, getUser, getToken, userinfo };

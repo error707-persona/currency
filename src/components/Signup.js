@@ -8,8 +8,7 @@ const Signup = ({ handleClose }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-
-  const { alert, setAlert } = CryptoState();
+    const { alert, setAlert } = CryptoState();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -22,10 +21,9 @@ const Signup = ({ handleClose }) => {
       });
 
       return;
-      
     }
 
-    signup(username, email, password);
+    signup(username, email, password, (a) => setAlert(a));
 
     // try{
     //   const result = await createUserWithEmailAndPassword();
