@@ -7,7 +7,7 @@ import { numberWithCommas } from './Banner/Carousel';
 import CoinInfo from "./CoinInfo";
 import { CryptoState } from './Cryptocontext';
 import parse from"html-react-parser";
-
+import Chart from 'chart.js/auto'
 const CoinPage = () => {
 
     const {id} = useParams();
