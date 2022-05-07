@@ -8,10 +8,6 @@ import {Line} from "react-chartjs-2";
 import {chartDays} from "../config/data";
 import SelectButton from "./SelectButton"
 
-
-
-
-
 const CoinInfo = (coin) => {
 
     const [historicalData, sethistoricalData] = useState();
@@ -106,7 +102,7 @@ const CoinInfo = (coin) => {
           <MenuItem value={"blue"}>Blue</MenuItem>
           <MenuItem value={"#69FFA8"}>Green</MenuItem>
         </Select>
-        {/* <Button variant="outlined" style={{ marginTop:50, float: "right"}}>Compare</Button> */}
+        <Button variant="outlined" style={{ marginTop:50, float: "right"}}>Add to watch list</Button>
         
 
                     <Line style={{marginTop:30}}

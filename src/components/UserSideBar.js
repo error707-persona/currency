@@ -152,7 +152,7 @@ export default function TemporaryDrawer() {
           <div className={classes.watchlist} >
               <span style={{fontSize: 15, textShadow: "0 0 5px black"}}>Watchlist</span>
           </div>
-          <div style={{paddingBottom:"50px"}} >{!(user) (data.name)}</div>
+          <div style={{paddingBottom:"50px"}} >{(user)? (data.name): "Unknown User"}</div>
           
           
           </div>

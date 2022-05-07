@@ -165,7 +165,7 @@ const CoinsTable = () => {
                                     align="right" className={classes.tablecell}
                                     >
                                     {symbol}{" "}
-                                    {row.current_price.toFixed(2)}
+                                    {numberWithCommas(row.current_price.toFixed(2))}
                                     </TableCell>
                                     
                                     <TableCell

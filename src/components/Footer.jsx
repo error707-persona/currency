@@ -20,7 +20,7 @@ const Footer = () => {
         <Row>
           <Column>
            
-            <FooterLink href="#">About Us</FooterLink>
+            <FooterLink href="https://drive.google.com/file/d/1W6GXQBQymiJNA8TK4Rc8HlbCoCQAI11g/view?usp=sharing">About Us</FooterLink>
           </Column>
           <Column>
             
@@ -33,7 +33,7 @@ const Footer = () => {
           </Column>
           <Column>
             
-            <FooterLink href="#">
+            <FooterLink href="https://www.linkedin.com/in/areeshasayed/">
               {/* <i>
                 <span style={{ marginLeft: "10px" }}> */}
                     LinkedIn
@@ -43,9 +43,7 @@ const Footer = () => {
            
           </Column>
         </Row>
-        <div style={{margin:"auto"}}> <p> © Areesha Sayed </p> </div>
-           
-        
+        <div style={{margin:"auto"}}> <p> Made By Areesha Sayed </p> </div>
       </Container>
     </Box>
   );
