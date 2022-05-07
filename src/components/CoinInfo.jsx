@@ -5,7 +5,6 @@ import { HistoricalChart } from '../config/api';
 import {CryptoState} from './Cryptocontext';
 import { makeStyles, ThemeProvider, createTheme,MenuItem,Select, CircularProgress, Button } from '@material-ui/core';
 import {Line} from "react-chartjs-2";
-import Chart from 'chart.js/auto';
 import {chartDays} from "../config/data";
 import SelectButton from "./SelectButton"
 
@@ -107,7 +106,7 @@ const CoinInfo = (coin) => {
           <MenuItem value={"blue"}>Blue</MenuItem>
           <MenuItem value={"#69FFA8"}>Green</MenuItem>
         </Select>
-        <Button variant="outlined" style={{ marginTop:50, float: "right"}}>Compare</Button>
+        {/* <Button variant="outlined" style={{ marginTop:50, float: "right"}}>Compare</Button> */}
         
 
                     <Line style={{marginTop:30}}
