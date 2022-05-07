@@ -6,10 +6,8 @@ import {
   Select,
   Toolbar,
   Typography,
-  Menu,
-  Link,
-  ButtonBase,
 } from "@material-ui/core";
+import UserSidebar from "../components/UserSideBar";
 import { makeStyles } from "@material-ui/styles";
 import { createTheme, Avatar } from "@material-ui/core";
 import { ThemeProvider } from "@material-ui/core";
@@ -17,6 +15,7 @@ import { useNavigate } from "react-router-dom";
 import AuthModal from "./AuthModal";
 import { CryptoState } from "./Cryptocontext";
 import SelectButton from "./SelectButton";
+import auth, { userinfo } from "../utils/auth"
 
 const useStyles = makeStyles(() => ({
   title: {
@@ -39,7 +38,8 @@ const darkTheme = createTheme({
     type: "dark",
   },
 });
-
+const user = userinfo();
+const data = JSON.parse(user);
 const Header = () => {
   const { currency, setCurrency } = CryptoState();
   console.log(currency);
@@ -70,7 +70,12 @@ const Header = () => {
               <MenuItem value={"USD"}>USD</MenuItem>
               <MenuItem value={"INR"}>INR</MenuItem>
             </Select>
-            <AuthModal />
+            {!(data)?
+            <AuthModal />:<UserSidebar/>
+            }
+            
+            
+           
           </Toolbar>
         </Container>
       </AppBar>

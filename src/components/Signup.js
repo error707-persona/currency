@@ -20,7 +20,9 @@ const Signup = ({ handleClose }) => {
         message: "Passwords do no match",
         type: "error",
       });
+
       return;
+      
     }
 
     signup(username, email, password);

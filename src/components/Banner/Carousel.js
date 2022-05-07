@@ -58,8 +58,8 @@ const Carousel = () => {
         let profit = coin.price_change_percentage_24h>=0;
 
         return (
-            <div className={classes.carouselItem} onClick={()=>navigate(`/coins/${coin.id}`)}>
-            <Link  to={`coins/${coin.id}`} >
+            <div className={classes.carouselItem}>
+            <Link  to={`/coins/${coin.id}`} >
                 
                 <img src={coin?.image}
                 alt={coin.name}

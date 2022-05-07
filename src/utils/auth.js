@@ -1,5 +1,6 @@
 import axios from "axios";
 
+
 const getToken = () => localStorage.getItem("crypton-auth-token");
 
 const putToken = (token) => localStorage.setItem("crypton-auth-token", token);
@@ -11,7 +12,7 @@ const getUser = () => {
   if (token) return null;
 
   axios
-    .post("http://localhost:5000/users", {
+    .post("http://localhost:5001/users", {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -26,7 +27,7 @@ const getUser = () => {
 
 const signup = (username, email, password) =>
   axios
-    .post("http://localhost:5000/users/signup", {
+    .post("http://localhost:5001/users/signup", {
       name: username,
       email: email,
       password: password,
@@ -34,24 +35,27 @@ const signup = (username, email, password) =>
     .then((res) => {
       putToken(res.data.token);
 
-      // console.log(res);
+      console.log(res);
 
       // console.log(`\nEmail: ${res.email}\nToken : ${res.token}`);
     })
     .catch((err) => {
       console.log(err.response);
     });
-
+    const userinfoset = (user) => sessionStorage.setItem("user-info", JSON.stringify(user));
+    const userinfo = () => sessionStorage.getItem("user-info");
 const login = (email, password) =>
   axios
-    .post("http://localhost:5000/users/signin", {
+    .post("http://localhost:5001/users/signin", {
       email: email,
       password: password,
     })
     .then((res) => {
       putToken(res.data.token);
-
-      // console.log(res);
+      let obj = {email: res.data.email, name: res.data.name, token: res.data.token}
+      userinfoset(obj)
+      
+      console.log(res);
 
       // console.log(`\nEmail: ${res.data.email}\nToken : ${res.data.token}`);
     })
@@ -59,4 +63,4 @@ const login = (email, password) =>
       console.log(err.response);
     });
 
-export { signup, login, getUser, getToken };
+export { signup, login, getUser, getToken, userinfo };

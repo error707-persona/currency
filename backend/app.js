@@ -6,17 +6,20 @@ const logger = require("morgan");
 const mongoose = require("mongoose");
 const userRouter = require("./routes/userRouter");
 const dotenv = require("dotenv");
+const cors = require("cors");
+
 
 dotenv.config();
-
+const port = process.env.PORT || 5001;
 mongoose
-  .connect(process.env.MONGODB_URL, { autoCreate: true })
+  .connect("mongodb+srv://root:root@cluster0.qo4qm.mongodb.net/Crypton?retryWrites=true&w=majority", { autoCreate: true })
   .then(() => console.log("Connected to MongoDB"))
   .catch((err) => console.log("Couldn't connect to Atlas: ", err.message));
 
 // Middleware
 const app = express();
 app.use(express.json());
+app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
@@ -65,6 +68,10 @@ app.use(function (err, req, res, next) {
   // Render the error page
   res.status(err.status || 500);
   res.render("Error");
+});
+
+app.listen(port, () => {
+  console.log('Server started on: ' + port);
 });
 
 module.exports = app;

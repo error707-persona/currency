@@ -1,10 +1,11 @@
-import React from 'react'
+import {React, useState} from 'react'
 import CoinsTable from './CoinsTable'
 import {Card, CardContent, Typography, CardActions, makeStyles, Button} from "@material-ui/core"
-
+import {getToken, getUser} from '../utils/auth'
 
 
 const Profile = () => {
+  const [user, setuser] = useState("")
     const useStyles = makeStyles({
         pos:{
 
@@ -16,6 +17,13 @@ const Profile = () => {
             
         }
     });
+
+    const getToken = () => {
+      if (getToken && getUser){
+        setuser(getUser.email)
+      }
+    }
+    
     const classes = useStyles();
     return (
         <div>

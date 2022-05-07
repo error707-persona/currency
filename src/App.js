@@ -9,6 +9,7 @@ import CoinPage from './components/CoinPage';
 import Profile from './components/Profile';
 import Contactus from "./components/Contactus"
 import News from './components/News';
+import Footer from './components/Footer'
 
 // import MuiAlert from "@material-ui/lab/Alert";
 import Alert from '@material-ui/lab/Alert';
@@ -37,9 +38,9 @@ function App() {
       <Route path="/contactus" element={<Contactus/>} exact/>
      
       </Routes>
-
+      
     </div>
- 
+   
     </BrowserRouter>
   );
 }
