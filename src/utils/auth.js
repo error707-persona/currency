@@ -18,9 +18,14 @@ const getUser = () => {
     })
     .then((res) => {
       user = res.data;
+      console.log("User", user);
+      userinfoset(user);
+    })
+    .catch((err) => {
+      console.log("Get User Error", err.message);
     });
 
-  console.log(user);
+  console.log("User", user);
   return user;
 };
 
@@ -52,8 +57,10 @@ const signup = (username, email, password, handleAlert) =>
         message: err.response.data.message,
       });
     });
+
 const userinfoset = (user) =>
   sessionStorage.setItem("user-info", JSON.stringify(user));
+
 const userinfo = () => sessionStorage.getItem("user-info");
 
 const login = (email, password, handleAlert) =>
@@ -64,14 +71,9 @@ const login = (email, password, handleAlert) =>
     })
     .then((res) => {
       putToken(res.data.token);
-      let obj = {
-        email: res.data.email,
-        name: res.data.name,
-        token: res.data.token,
-      };
-      userinfoset(obj);
 
-      console.log(res);
+      userinfoset(res.data);
+
       handleAlert({
         open: true,
         type: "success",

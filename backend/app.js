@@ -7,12 +7,15 @@ const mongoose = require("mongoose");
 const userRouter = require("./routes/userRouter");
 const dotenv = require("dotenv");
 const cors = require("cors");
-
+const watchlistRouter = require("./routes/watchlistRouter");
 
 dotenv.config();
 const port = process.env.PORT || 5001;
 mongoose
-  .connect("mongodb+srv://root:root@cluster0.qo4qm.mongodb.net/Crypton?retryWrites=true&w=majority", { autoCreate: true })
+  .connect(
+    "mongodb+srv://root:root@cluster0.qo4qm.mongodb.net/Crypton?retryWrites=true&w=majority",
+    { autoCreate: true }
+  )
   .then(() => console.log("Connected to MongoDB"))
   .catch((err) => console.log("Couldn't connect to Atlas: ", err.message));
 
@@ -53,6 +56,7 @@ app.use(express.static(path.join(__dirname, "public")));
 
 // Routes
 app.use("/users", userRouter);
+app.use("/watchlist", watchlistRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
@@ -71,7 +75,7 @@ app.use(function (err, req, res, next) {
 });
 
 app.listen(port, () => {
-  console.log('Server started on: ' + port);
+  console.log("Server started on: " + port);
 });
 
 module.exports = app;

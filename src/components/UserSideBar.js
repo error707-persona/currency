@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useCallback, useEffect } from "react";
 
 import { makeStyles, Avatar } from "@material-ui/core";
 import Drawer from "@material-ui/core/Drawer";
 import Button from "@material-ui/core/Button";
-import auth, { userinfo } from "../utils/auth";
+import auth, { getUser, userinfo } from "../utils/auth";
 
 const useStyles = makeStyles((theme) => ({
   list: {
@@ -51,18 +51,17 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const logOut = () => {
-  localStorage.removeItem("user-info");
-};
-
 export default function TemporaryDrawer() {
   const classes = useStyles();
   const [state, setState] = React.useState({
     right: false,
   });
 
+  getUser();
+
   const user = userinfo();
   const data = JSON.parse(user);
+  console.log(user);
 
   const toggleDrawer = (anchor, open) => (event) => {
     if (
@@ -74,6 +73,14 @@ export default function TemporaryDrawer() {
 
     setState({ ...state, [anchor]: open });
   };
+
+  const logOut = useCallback(() => {
+    console.log("Logging out");
+    sessionStorage.removeItem("user-info");
+    localStorage.removeItem("crypton-auth-token");
+  }, []);
+
+  useEffect(() => {}, [logOut]);
 
   //   const list = (anchor) => (
   //     <div
@@ -147,13 +154,21 @@ export default function TemporaryDrawer() {
                       fontWeight: "bolder",
                       wordWrap: "break-word",
                   }}
-                  areesha
               </span> */}
                 </Avatar>
                 <div className={classes.watchlist}>
                   <span style={{ fontSize: 15, textShadow: "0 0 5px black" }}>
                     Watchlist
                   </span>
+                  {user &&
+                    data.watchlist &&
+                    data.watchlist.map((e) => (
+                      <span
+                        style={{ fontSize: 15, textShadow: "0 0 5px black" }}
+                      >
+                        {e}
+                      </span>
+                    ))}
                 </div>
                 <div style={{ paddingBottom: "50px" }}>
                   {user ? data.name : "Unknown User"}
@@ -163,7 +178,7 @@ export default function TemporaryDrawer() {
               <Button
                 variant="contained"
                 className={classes.logout}
-                onclick={logOut}
+                onClick={logOut}
               >
                 Logout
               </Button>
