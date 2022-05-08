@@ -15,7 +15,7 @@ import { useNavigate } from "react-router-dom";
 import AuthModal from "./AuthModal";
 import { CryptoState } from "./Cryptocontext";
 import SelectButton from "./SelectButton";
-import auth, { userinfo } from "../utils/auth"
+import auth, { userinfo } from "../utils/auth";
 
 const useStyles = makeStyles(() => ({
   title: {
@@ -70,10 +70,7 @@ const Header = () => {
               <MenuItem value={"USD"}>USD</MenuItem>
               <MenuItem value={"INR"}>INR</MenuItem>
             </Select>
-            {/* {!(data)?
-            <AuthModal />:
-            } */}
-            <UserSidebar/>
+            {!data ? <AuthModal /> : <UserSidebar />}
           </Toolbar>
         </Container>
       </AppBar>
