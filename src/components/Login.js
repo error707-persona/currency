@@ -13,7 +13,7 @@ const Login = ({ handleClose }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    login(email, password);
+    login(email, password, (a) => setAlert(a));
    
   };
 

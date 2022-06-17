@@ -34,7 +34,7 @@ export default function AuthModal() {
   const handleClose = () => {
     setOpen(false);
   };
-  
+
   const [value, setvalue] = useState(1);
   const handleChange = (event, newValue) => {
     setvalue(newValue);

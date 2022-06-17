@@ -19,6 +19,7 @@ userRouter.post("/signin", async (req, res) => {
         name: user.name,
         email: user.email,
         token: generateToken(user),
+        watchlist: user.watchlist,
       });
       return;
     }
@@ -39,6 +40,7 @@ userRouter.post("/signup", async (req, res) => {
     name: req.body.name,
     email: req.body.email,
     password: req.body.password,
+    watchlist: [],
   });
 
   // Save user
@@ -53,13 +55,14 @@ userRouter.post("/signup", async (req, res) => {
   });
 });
 
-userRouter.post("/", isAuth, async (req, res) => {
+userRouter.get("/", isAuth, async (req, res) => {
   const user = await User.findOne({ email: req.user.email });
   if (user)
     res.send({
       _id: user._id,
       name: user.name,
       email: user.email,
+      watchlist: user.watchlist,
     });
   return;
 });
