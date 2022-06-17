@@ -68,6 +68,11 @@ const CoinInfo = (coin) => {
         }
         return color;
       }
+
+      const addcall = (coin) => {
+        // e.preventDefault();
+        // addToWishList(coin);
+      }
     // const colors = this.generateColor();
     // console.log(colors)
 
@@ -102,7 +107,7 @@ const CoinInfo = (coin) => {
           <MenuItem value={"blue"}>Blue</MenuItem>
           <MenuItem value={"#69FFA8"}>Green</MenuItem>
         </Select>
-        <Button variant="outlined" style={{ marginTop:50, float: "right"}}>Add to watch list</Button>
+        <Button variant="outlined" style={{ marginTop:50, float: "right"}} onClick={(e)=>addcall(coin[1])}>Add to watch list</Button>
         
 
                     <Line style={{marginTop:30}}
