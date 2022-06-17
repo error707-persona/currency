@@ -24,25 +24,25 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));
-app.use(function (req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin",
-    "X-Requested-With",
-    "Content-Type",
-    "Accept"
-  );
-  res.header(
-    "Access-Control-Allow-Mehtods",
-    "PUT",
-    "POST",
-    "GET",
-    "DELETE",
-    "OPTIONS"
-  );
-  next();
-});
+// app.use(function (req, res, next) {
+//   res.header("Access-Control-Allow-Origin", "*");
+//   res.header(
+//     "Access-Control-Allow-Headers",
+//     "Origin",
+//     "X-Requested-With",
+//     "Content-Type",
+//     "Accept"
+//   );
+//   res.header(
+//     "Access-Control-Allow-Mehtods",
+//     "PUT",
+//     "POST",
+//     "GET",
+//     "DELETE",
+//     "OPTIONS"
+//   );
+//   next();
+// });
 
 // Logger
 app.use(logger("dev"));
