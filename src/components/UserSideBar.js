@@ -75,11 +75,16 @@ export default function TemporaryDrawer() {
 
     setState({ ...state, [anchor]: open });
   };
+  
+  function refresh() {
+        window .location.reload();
+    }
 
   const logOut = () => {
     console.log("Logging out");
     sessionStorage.removeItem("user-info");
     localStorage.removeItem("crypton-auth-token");
+    refresh();
   };
 
   return (
