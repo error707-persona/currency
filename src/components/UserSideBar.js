@@ -1,9 +1,9 @@
-import React, { useCallback, useEffect } from "react";
+import React, { useEffect } from "react";
 
 import { makeStyles, Avatar } from "@material-ui/core";
 import Drawer from "@material-ui/core/Drawer";
 import Button from "@material-ui/core/Button";
-import auth, { getUser, userinfo } from "../utils/auth";
+import { getUser, userinfo } from "../utils/auth";
 
 const useStyles = makeStyles((theme) => ({
   list: {
@@ -56,13 +56,13 @@ export default function TemporaryDrawer() {
   const [state, setState] = React.useState({
     right: false,
   });
+  const [user, setUser] = React.useState({});
 
   useEffect(() => {
-    getUser();
-  }, [state]);
+    setUser(getUser());
+    console.log(user);
+  }, [state, logOut]);
 
-  const user = userinfo();
-  const data = JSON.parse(user);
   console.log(user);
 
   const toggleDrawer = (anchor, open) => (event) => {
@@ -76,42 +76,11 @@ export default function TemporaryDrawer() {
     setState({ ...state, [anchor]: open });
   };
 
-  const logOut = useCallback(() => {
+  const logOut = () => {
     console.log("Logging out");
     sessionStorage.removeItem("user-info");
     localStorage.removeItem("crypton-auth-token");
-  }, []);
-
-  useEffect(() => {}, [logOut]);
-
-  //   const list = (anchor) => (
-  //     <div
-  //       className={clsx(classes.list, {
-  //         [classes.fullList]: anchor === 'top' || anchor === 'bottom',
-  //       })}
-  //       role="presentation"
-  //       onClick={toggleDrawer(anchor, false)}
-  //       onKeyDown={toggleDrawer(anchor, false)}
-  //     >
-  //       <List>
-  //         {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-  //           <ListItem button key={text}>
-  //             <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-  //             <ListItemText primary={text} />
-  //           </ListItem>
-  //         ))}
-  //       </List>
-  //       <Divider />
-  //       <List>
-  //         {['All mail', 'Trash', 'Spam'].map((text, index) => (
-  //           <ListItem button key={text}>
-  //             <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-  //             <ListItemText primary={text} />
-  //           </ListItem>
-  //         ))}
-  //       </List>
-  //     </div>
-  //   );
+  };
 
   return (
     <div>
@@ -163,8 +132,8 @@ export default function TemporaryDrawer() {
                     Watchlist
                   </span>
                   {user &&
-                    data.watchlist &&
-                    data.watchlist.map((e) => (
+                    user.watchlist &&
+                    user.watchlist.map((e) => (
                       <span
                         style={{ fontSize: 15, textShadow: "0 0 5px black" }}
                       >
@@ -173,7 +142,7 @@ export default function TemporaryDrawer() {
                     ))}
                 </div>
                 <div style={{ paddingBottom: "50px" }}>
-                  {user ? data.name : "Unknown User"}
+                  {user ? user.name : "Unknown User"}
                 </div>
               </div>
 
