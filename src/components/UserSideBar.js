@@ -77,7 +77,7 @@ export default function TemporaryDrawer() {
   };
   
   function refresh() {
-        window .location.reload();
+        window.location.reload();
     }
 
   const logOut = () => {
