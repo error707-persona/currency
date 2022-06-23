@@ -24,17 +24,6 @@ const Signup = ({ handleClose }) => {
     }
 
     signup(username, email, password, (a) => setAlert(a));
-
-    // try{
-    //   const result = await createUserWithEmailAndPassword();
-    //     console.log(result);
-    //     handleClose();
-    // }catch(error){
-    //   setAlert({
-    //     open:true,
-    //     message: error.message,
-    //     type: "error",
-    //   }
   };
 
   return (
