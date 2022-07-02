@@ -73,12 +73,14 @@ const login = (email, password, handleAlert) =>
       putToken(res.data.token);
 
       userinfoset(res.data);
-
+      
       handleAlert({
         open: true,
         type: "success",
         message: `Welcome ${res.data.name}`,
       });
+
+      setTimeout(() => window.location.reload(), 850);
       // console.log(`\nEmail: ${res.data.email}\nToken : ${res.data.token}`);
     })
     .catch((err) => {

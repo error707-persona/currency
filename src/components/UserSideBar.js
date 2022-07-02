@@ -4,7 +4,7 @@ import { makeStyles, Avatar } from "@material-ui/core";
 import Drawer from "@material-ui/core/Drawer";
 import Button from "@material-ui/core/Button";
 import { getUser, userinfo } from "../utils/auth";
-
+import { CryptoState } from "./Cryptocontext";
 const useStyles = makeStyles((theme) => ({
   list: {
     width: 250,
@@ -56,8 +56,16 @@ export default function TemporaryDrawer() {
   const [state, setState] = React.useState({
     right: false,
   });
-  const [user, setUser] = React.useState({});
 
+  const [user, setUser] = React.useState({});
+  const {setAlert, watchlist, coins, symbol} = CryptoState();
+  
+  const logOut = () => {
+    console.log("Logging out");
+    sessionStorage.removeItem("user-info");
+    localStorage.removeItem("crypton-auth-token");
+    window.location.reload();
+  };
   useEffect(() => {
     setUser(getUser());
     console.log(user);
@@ -78,12 +86,6 @@ export default function TemporaryDrawer() {
   
   
 
-  const logOut = () => {
-    console.log("Logging out");
-    sessionStorage.removeItem("user-info");
-    localStorage.removeItem("crypton-auth-token");
-   
-  };
 
   return (
     <div>
@@ -137,11 +139,13 @@ export default function TemporaryDrawer() {
                   {user &&
                     user.watchlist &&
                     user.watchlist.map((e) => (
+                      <div className={classes.coin}>
                       <span
                         style={{ fontSize: 15, textShadow: "0 0 5px black" }}
                       >
-                        {e}
+                        {symbol}{e}
                       </span>
+                      </div>
                     ))}
                 </div>
                 <div style={{ paddingBottom: "50px" }}>
