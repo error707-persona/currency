@@ -20,7 +20,7 @@ const Cryptocontext = ({ children }) => {
 
   const fecthCoins = async () => {
     setloading(true);
-    const { data } = await axios.get(CoinList(currency));
+    const { data } = await axios.get(CoinList(currency)).catch(err=>err);
     setCoins(data);
     setloading(false);
   };

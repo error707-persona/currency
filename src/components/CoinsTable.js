@@ -54,10 +54,10 @@ const CoinsTable = () => {
     })
 
     const handleSearch = () => {
-        return coins.filter((coin)=>(
+        return coins?.filter((coin)=>(
             coin.name.toLowerCase().includes(search) ||
             coin.symbol.toLowerCase().includes(search) 
-        ))
+        )) || coins
     }
     
     const useStyles = makeStyles(()=>({
@@ -128,6 +128,7 @@ const CoinsTable = () => {
                         )
                         )}
                     </TableHead>
+                    {(coins)? 
                     <TableBody>
                         {handleSearch()
                         .slice((page-1)*10, (page-1)*10+10)
@@ -186,6 +187,7 @@ const CoinsTable = () => {
                             )
                         })} 
                     </TableBody>
+                    :"Data was not Fetched Api network error"}
                 </Table>
                 }
         </TableContainer>

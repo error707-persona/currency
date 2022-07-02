@@ -20,6 +20,7 @@ import Alert from "./Alert";
 const CoinInfo = (coin) => {
   const [historicalData, sethistoricalData] = useState();
   const [days, setdays] = useState(1);
+  // const [addButton, setaddButton] = useState(false);
   const coindata = coin?.coin;
   const { currency, setAlert } = CryptoState();
   //    console.log(coin.id, days, currency);
@@ -61,12 +62,7 @@ const CoinInfo = (coin) => {
     },
   });
   const [color, setcolor] = useState("white");
-  // const dt = arr.map((time_date)=>{
-  //     return time_date[0]
-  // });
-  // console.log("map",dt)
-  // let d = new Date(1642426160415);
-  // console.log("d",d.getHours());
+ 
   const generateColor = () => {
     var letters = "0123456789ABCDEF";
     var color = "#";
@@ -75,8 +71,7 @@ const CoinInfo = (coin) => {
     }
     return color;
   };
-  // const colors = this.generateColor();
-  // console.log(colors)
+
 
   const classes = useStyles();
   return (
@@ -116,9 +111,10 @@ const CoinInfo = (coin) => {
             <Button
               variant="outlined"
               style={{ marginTop: 50, float: "right" }}
-              onClick={() => addToWatchlist(coindata.id, (a) => setAlert(a))}
-            >
-              Add to watch list
+              onClick={() => addToWatchlist(coindata.id)}
+            > 
+            {/* !(addButton)?setaddButton(true):setaddButton(false) */}
+              {/* {!(addButton)?"Add to watch list":"Remove from WatchList"} */}
             </Button>
 
             <Line
