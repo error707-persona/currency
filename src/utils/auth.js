@@ -11,7 +11,7 @@ const getUser = () => {
   if (token) return null;
 
   axios
-    .post("https://backend-782.herokuapp.com/users", {
+    .post("https://currency-backend.herokuapp.com/users", {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -31,7 +31,7 @@ const getUser = () => {
 
 const signup = (username, email, password, handleAlert) =>
   axios
-    .post("https://backend-782.herokuapp.com/users/signup", {
+    .post("https://currency-backend.herokuapp.com/users/signup", {
       name: username,
       email: email,
       password: password,
@@ -65,7 +65,7 @@ const userinfo = () => sessionStorage.getItem("user-info");
 
 const login = (email, password, handleAlert) =>
   axios
-    .post("https://backend-782.herokuapp.com/users/signin", {
+    .post("https://currency-backend.herokuapp.com/users/signin", {
       email: email,
       password: password,
     })
