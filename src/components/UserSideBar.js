@@ -68,6 +68,7 @@ export default function TemporaryDrawer() {
   };
 
   useEffect(() => {
+    getUser();
     setUser(JSON.parse(userinfo()));
   }, [state, logOut]);
 
