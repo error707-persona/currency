@@ -58,20 +58,18 @@ export default function TemporaryDrawer() {
   });
 
   const [user, setUser] = React.useState({});
-  const {setAlert, watchlist, coins, symbol} = CryptoState();
-  
+  const { setAlert, watchlist, coins, symbol } = CryptoState();
+
   const logOut = () => {
     console.log("Logging out");
     sessionStorage.removeItem("user-info");
     localStorage.removeItem("crypton-auth-token");
     window.location.reload();
   };
-  useEffect(() => {
-    setUser(getUser());
-    console.log(user);
-  }, [state, logOut]);
 
-  console.log(user);
+  useEffect(() => {
+    setUser(JSON.parse(userinfo()));
+  }, [state, logOut]);
 
   const toggleDrawer = (anchor, open) => (event) => {
     if (
@@ -83,8 +81,8 @@ export default function TemporaryDrawer() {
 
     setState({ ...state, [anchor]: open });
   };
-  
-  
+
+
 
 
   return (
@@ -140,11 +138,11 @@ export default function TemporaryDrawer() {
                     user.watchlist &&
                     user.watchlist.map((e) => (
                       <div className={classes.coin}>
-                      <span
-                        style={{ fontSize: 15, textShadow: "0 0 5px black" }}
-                      >
-                        {symbol}{e}
-                      </span>
+                        <span
+                          style={{ fontSize: 15, textShadow: "0 0 5px black" }}
+                        >
+                          {symbol}{e}
+                        </span>
                       </div>
                     ))}
                 </div>
