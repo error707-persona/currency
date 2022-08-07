@@ -146,7 +146,8 @@ export default function TemporaryDrawer() {
                         // outline: "#4CAF50 solid 10px",
                         margin: "auto",  
                         padding: "20px",
-                        textAlign: "center",}} >
+                        textAlign: "center",
+                        width:"100%"}} >
                         <span
                           style={{ fontSize: 15, textShadow: "0 0 5px black" }}
                         >
