@@ -48,6 +48,10 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
     gap: 12,
     overflowY: "scroll",
+  coin:{
+    border: "1px solid red",
+    outline: "5px pink",
+  }
   },
 }));
 
@@ -137,7 +141,7 @@ export default function TemporaryDrawer() {
                   {user &&
                     user.watchlist &&
                     user.watchlist.map((e) => (
-                      <div className={classes.coin}>
+                      <div className={classes.coin} >
                         <span
                           style={{ fontSize: 15, textShadow: "0 0 5px black" }}
                         >
