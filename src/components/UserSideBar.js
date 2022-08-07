@@ -141,9 +141,12 @@ export default function TemporaryDrawer() {
                   {user &&
                     user.watchlist &&
                     user.watchlist.map((e) => (
-                      <div style={{border: "1px white", outline:"2px dashed blue",  margin: "auto",  
-                      padding: "20px",
-                      textAlign: "center"}} >
+                      <div style={{
+                        border: "2px solid black",
+                        outline: "#4CAF50 solid 10px",
+                        margin: "auto",  
+                        padding: "20px",
+                        textAlign: "center",}} >
                         <span
                           style={{ fontSize: 15, textShadow: "0 0 5px black" }}
                         >
