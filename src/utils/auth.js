@@ -8,10 +8,10 @@ const getUser = () => {
   const token = getToken();
   let user = null;
 
-  if (token) return null;
+  if (!token) return null;
 
   axios
-    .post("https://backend-782.herokuapp.com/users", {
+    .get("https://backend-782.herokuapp.com/users/", {
       headers: {
         Authorization: `Bearer ${token}`,
       },
