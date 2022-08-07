@@ -147,11 +147,14 @@ export default function TemporaryDrawer() {
                         margin: "auto",  
                         padding: "20px",
                         textAlign: "center",
-                        width:"100%"}} >
+                        width:"100%"}} 
+                        onClick={()=>navigate(`/coins/${e}`)}
+                        >
                         <span
                           style={{ fontSize: 15, textShadow: "0 0 5px black" }}
+
                         >
-                          {symbol}{e}
+                          {e}
                         </span>
                       </div>
                     ))}
