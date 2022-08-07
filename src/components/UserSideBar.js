@@ -141,7 +141,7 @@ export default function TemporaryDrawer() {
                   {user &&
                     user.watchlist &&
                     user.watchlist.map((e) => (
-                      <div className={classes.coin} >
+                      <div style={{border: "1px white", outline:"2px dashed blue"}} >
                         <span
                           style={{ fontSize: 15, textShadow: "0 0 5px black" }}
                         >
