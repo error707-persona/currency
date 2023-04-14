@@ -1,6 +1,8 @@
 
 live project link: - https://crypton-786.netlify.app/
 
+After cloning the repository run npm install to install all the dependencies then run npm start to view the project on your local machine
+
 #Results
 ![image](https://user-images.githubusercontent.com/53540032/224476551-37d17b59-3274-4d06-bd32-b57ba30e734a.png)
 ![image](https://user-images.githubusercontent.com/53540032/224476576-96205aa2-c8fe-428b-83cf-c8841d4d9558.png)
