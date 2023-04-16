@@ -81,32 +81,6 @@ watchlistRouter.post("/delete", async (req, res) => {
     token: generateToken(updatedUser),
   });
 });
-watchlistRouter.get("/all", async (req, res) => {
-  // Check if user already exists
-  const user = await User.findOne({ email: req.body.email });
-  if (!user) {
-    res.status(401).send({ message: "User does not exist" });
-    return;
-  }
 
-  if (!req.body.coinId) {
-    res.status(400).send({ message: "Coin id was not provided" });
-    return;
-  }
-
-  // Save user
-  const findUser = await User.findOne({ email: user.email });
-
-  
-
-  // Send details and jwt token
-  res.send({
-    _id: findUser._id,
-    name: findUser.name,
-    email: findUser.email,
-    watchlist: findUser.watchlist,
-    token: generateToken(findUser),
-  });
-});
 
 module.exports = watchlistRouter;

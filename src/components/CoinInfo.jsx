@@ -22,7 +22,7 @@ const CoinInfo = (coin) => {
   const [historicalData, sethistoricalData] = useState();
   const [days, setdays] = useState(1);
   const coindata = coin?.coin;
-  const { currency, setAlert } = CryptoState();
+  const { currency, setAlert, watchlist, setwatchlist } = CryptoState();
   //    console.log(coin.id, days, currency);
   const fetchhistoricalData = async () => {
     const { data } = await axios.get(
@@ -62,7 +62,10 @@ const CoinInfo = (coin) => {
     },
   });
   const [color, setcolor] = useState("white");
-
+  const handleAdd = (coinId, handleAlert) => {
+    addToWatchlist(coinId, handleAlert);
+    setwatchlist([...watchlist, coinId]);
+  };
   const generateColor = () => {
     var letters = "0123456789ABCDEF";
     var color = "#";
@@ -71,11 +74,7 @@ const CoinInfo = (coin) => {
     }
     return color;
   };
-  const user = JSON.parse(userinfo());
-  const handleAdd = (coinId, handleAlert) => {
-    if (!user.watchlist.includes(coinId)) addToWatchlist(coinId, handleAlert);
-    console.log(getUser);
-  };
+
   const classes = useStyles();
   return (
     <ThemeProvider theme={darkTheme}>

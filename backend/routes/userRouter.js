@@ -56,8 +56,9 @@ userRouter.post("/signup", async (req, res) => {
   });
 });
 
-userRouter.get("/", isAuth, async (req, res) => {
-  const user = await User.findOne({ email: req.user.email });
+userRouter.get("/", async (req, res) => {
+  console.log(req)
+  const user = await User.findOne({ email: req.body.email });
   if (user)
     res.send({
       _id: user._id,

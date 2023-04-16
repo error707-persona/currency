@@ -13,6 +13,8 @@ const Cryptocontext = ({ children }) => {
   const [loading, setloading] = useState(false);
   const [user, setUser] = useState(null);
   const userw = JSON.parse(userinfo());
+  const [watchlist, setwatchlist] = useState([]);
+ 
 
   const [alert, setAlert] = useState({
     open: false,
@@ -44,7 +46,8 @@ const Cryptocontext = ({ children }) => {
         fecthCoins,
         alert,
         setAlert,
-      
+        watchlist,
+        setwatchlist,
       }}
     >
       {children}

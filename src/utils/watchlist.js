@@ -67,3 +67,20 @@ export function deleteFromWatchlist(coinId, handleAlert) {
       });
     });
 }
+export function getWatchlist() {
+  const user = JSON.parse(userinfo());
+  
+  let data;
+  axios
+    .get("http://localhost:5001/users/", {
+      email: user.email,
+    })
+    .then((res) => {
+    data = res;
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+   
+  return data;
+}

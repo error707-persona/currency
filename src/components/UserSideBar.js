@@ -6,8 +6,9 @@ import Button from "@material-ui/core/Button";
 import { getUser, userinfo } from "../utils/auth";
 import { CryptoState } from "./Cryptocontext";
 import { IconChartLine, IconTrash } from "@tabler/icons";
-import { deleteFromWatchlist } from "../utils/watchlist";
+import { deleteFromWatchlist, getWatchlist } from "../utils/watchlist";
 import Alert from "./Alert";
+import { useNavigate } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   list: {
@@ -61,14 +62,13 @@ const useStyles = makeStyles((theme) => ({
 
 export default function TemporaryDrawer() {
   const classes = useStyles();
-  
+  const navigate = useNavigate();
   const [state, setState] = React.useState({
     right: false,
   });
 
   const [user, setUser] = React.useState({});
-  const { setAlert, coins, symbol } = CryptoState();
-  
+  const { setAlert, watchlist, setwatchlist, coins, symbol } = CryptoState();
 
   const logOut = () => {
     console.log("Logging out");
@@ -94,10 +94,15 @@ export default function TemporaryDrawer() {
 
   const handleDelete = (coinId) => {
     deleteFromWatchlist(coinId, Alert);
-    
+    setwatchlist(watchlist.filter((coin)=>coin!==coinId))
   };
 
+ 
 
+  const handleCurrency = (e) => {
+    navigate(`/coins/${e}`);
+    window.location.reload();
+  };
 
   return (
     <div>
@@ -149,8 +154,8 @@ export default function TemporaryDrawer() {
                     Watchlist
                   </span>
                   {user &&
-                    user.watchlist &&
-                    user.watchlist.map((e) => (
+                    watchlist &&
+                    watchlist.map((e) => (
                       <div
                         style={{
                           display: "flex",
@@ -160,15 +165,25 @@ export default function TemporaryDrawer() {
                           alignItems: "center",
                           height: "50px",
                           borderRadius: "5rem",
+                          cursor: "pointer",
                         }}
                       >
-                        <div
-                          style={{ marginRight: "15px", marginLeft: "10px" }}
-                        >
-                          <IconChartLine />
+                        <div 
+                         style={{
+                          display: "flex",
+                          background: "#4265f5",
+                          width: "100%",
+                          borderRadius:"5rem",
+                          alignItems: "center",
+                          height: "50px",}}
+                        onClick={() => handleCurrency(e)}>
+                          <div
+                            style={{ marginRight: "15px", marginLeft: "10px" }}
+                          >
+                            <IconChartLine />
+                          </div>
+                          <span style={{ fontSize: 15 }}>{e}</span>
                         </div>
-                        <span style={{ fontSize: 15 }}>{e}</span>
-
                         <button
                           style={{
                             marginLeft: "auto",
