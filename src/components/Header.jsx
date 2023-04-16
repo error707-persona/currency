@@ -16,6 +16,7 @@ import AuthModal from "./AuthModal";
 import { CryptoState } from "./Cryptocontext";
 import SelectButton from "./SelectButton";
 import auth, { userinfo } from "../utils/auth";
+import { IconCoin } from "@tabler/icons";
 
 const useStyles = makeStyles(() => ({
   title: {
@@ -52,7 +53,7 @@ const Header = () => {
       <AppBar className={classes.AppBar}>
         <Container color="transparent" position="static">
           <Toolbar>
-            <Avatar src="company2.png" />
+            <IconCoin/> &nbsp;&nbsp;&nbsp;&nbsp;
             <Typography className={classes.title} onClick={() => navigate("/")}>
               Crypton
             </Typography>

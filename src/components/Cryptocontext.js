@@ -2,6 +2,7 @@ import React from "react";
 import { createContext, useState, useEffect, useContext } from "react";
 import axios from "axios";
 import { CoinList } from "../config/api";
+import { userinfo } from "../utils/auth";
 
 const Crypto = createContext();
 
@@ -11,6 +12,8 @@ const Cryptocontext = ({ children }) => {
   const [coins, setCoins] = useState([]);
   const [loading, setloading] = useState(false);
   const [user, setUser] = useState(null);
+  const userw = JSON.parse(userinfo());
+
   const [alert, setAlert] = useState({
     open: false,
     message: "",
@@ -41,6 +44,7 @@ const Cryptocontext = ({ children }) => {
         fecthCoins,
         alert,
         setAlert,
+      
       }}
     >
       {children}

@@ -16,6 +16,7 @@ import { chartDays } from "../config/data";
 import SelectButton from "./SelectButton";
 import { addToWatchlist } from "../utils/watchlist";
 import Alert from "./Alert";
+import { getUser, userinfo } from "../utils/auth";
 
 const CoinInfo = (coin) => {
   const [historicalData, sethistoricalData] = useState();
@@ -61,12 +62,7 @@ const CoinInfo = (coin) => {
     },
   });
   const [color, setcolor] = useState("white");
-  // const dt = arr.map((time_date)=>{
-  //     return time_date[0]
-  // });
-  // console.log("map",dt)
-  // let d = new Date(1642426160415);
-  // console.log("d",d.getHours());
+
   const generateColor = () => {
     var letters = "0123456789ABCDEF";
     var color = "#";
@@ -75,9 +71,11 @@ const CoinInfo = (coin) => {
     }
     return color;
   };
-  // const colors = this.generateColor();
-  // console.log(colors)
-
+  const user = JSON.parse(userinfo());
+  const handleAdd = (coinId, handleAlert) => {
+    if (!user.watchlist.includes(coinId)) addToWatchlist(coinId, handleAlert);
+    console.log(getUser);
+  };
   const classes = useStyles();
   return (
     <ThemeProvider theme={darkTheme}>
@@ -116,7 +114,7 @@ const CoinInfo = (coin) => {
             <Button
               variant="outlined"
               style={{ marginTop: 50, float: "right" }}
-              onClick={() => addToWatchlist(coindata.id, (a) => setAlert(a))}
+              onClick={() => handleAdd(coindata.id, (a) => setAlert(a))}
             >
               Add to watch list
             </Button>

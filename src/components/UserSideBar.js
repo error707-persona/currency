@@ -6,6 +6,9 @@ import Button from "@material-ui/core/Button";
 import { getUser, userinfo } from "../utils/auth";
 import { CryptoState } from "./Cryptocontext";
 import { IconChartLine, IconTrash } from "@tabler/icons";
+import { deleteFromWatchlist } from "../utils/watchlist";
+import Alert from "./Alert";
+
 const useStyles = makeStyles((theme) => ({
   list: {
     width: 250,
@@ -58,12 +61,14 @@ const useStyles = makeStyles((theme) => ({
 
 export default function TemporaryDrawer() {
   const classes = useStyles();
+  
   const [state, setState] = React.useState({
     right: false,
   });
 
   const [user, setUser] = React.useState({});
-  const { setAlert, watchlist, coins, symbol } = CryptoState();
+  const { setAlert, coins, symbol } = CryptoState();
+  
 
   const logOut = () => {
     console.log("Logging out");
@@ -86,6 +91,13 @@ export default function TemporaryDrawer() {
 
     setState({ ...state, [anchor]: open });
   };
+
+  const handleDelete = (coinId) => {
+    deleteFromWatchlist(coinId, Alert);
+    
+  };
+
+
 
   return (
     <div>
@@ -166,6 +178,7 @@ export default function TemporaryDrawer() {
                             outline: "none",
                             border: "none",
                           }}
+                          onClick={() => handleDelete(e)}
                         >
                           <IconTrash />
                         </button>

@@ -34,3 +34,36 @@ export function addToWatchlist(coinId, handleAlert) {
       });
     });
 }
+export function deleteFromWatchlist(coinId, handleAlert) {
+  const user = JSON.parse(userinfo());
+
+  if (!user) {
+    handleAlert({ open: true, type: "warning", message: "No logged in user" });
+    return;
+  }
+  console.log("User Email", user);
+
+  console.log("Coin Id", coinId);
+
+  axios
+    .post("http://localhost:5001/watchlist/delete", {
+      email: user.email,
+      coinId: coinId,
+    })
+    .then((res) => {
+      handleAlert({
+        open: true,
+        type: "error",
+        message: "Successfully deleted from watchlist",
+      });
+      getUser();
+    })
+    .catch((err) => {
+      console.log(err);
+      handleAlert({
+        open: true,
+        type: "error",
+        message: err.message,
+      });
+    });
+}

@@ -42,4 +42,71 @@ watchlistRouter.post("/add", async (req, res) => {
   });
 });
 
+watchlistRouter.post("/delete", async (req, res) => {
+  // Check if user already exists
+  const user = await User.findOne({ email: req.body.email });
+  if (!user) {
+    res.status(401).send({ message: "User does not exist" });
+    return;
+  }
+
+  if (!req.body.coinId) {
+    res.status(400).send({ message: "Coin id was not provided" });
+    return;
+  }
+
+  let watchlist = !user.hasOwnProperty("watchlist")
+    ? [...user.watchlist, req.body.coinId]
+    : [req.body.coinId];
+
+  // Save user
+  const findUser = await User.findOne({ email: user.email });
+
+  const newWatchlist = findUser.watchlist.filter(
+    (coin) => coin !== req.body.coinId
+  );
+
+  const updatedUser = await User.findOneAndUpdate(
+    { email: user.email },
+    { watchlist: newWatchlist },
+    { new: true }
+  );
+
+  // Send details and jwt token
+  res.send({
+    _id: updatedUser._id,
+    name: updatedUser.name,
+    email: updatedUser.email,
+    watchlist: updatedUser.watchlist,
+    token: generateToken(updatedUser),
+  });
+});
+watchlistRouter.get("/all", async (req, res) => {
+  // Check if user already exists
+  const user = await User.findOne({ email: req.body.email });
+  if (!user) {
+    res.status(401).send({ message: "User does not exist" });
+    return;
+  }
+
+  if (!req.body.coinId) {
+    res.status(400).send({ message: "Coin id was not provided" });
+    return;
+  }
+
+  // Save user
+  const findUser = await User.findOne({ email: user.email });
+
+  
+
+  // Send details and jwt token
+  res.send({
+    _id: findUser._id,
+    name: findUser.name,
+    email: findUser.email,
+    watchlist: findUser.watchlist,
+    token: generateToken(findUser),
+  });
+});
+
 module.exports = watchlistRouter;
