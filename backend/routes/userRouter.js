@@ -30,6 +30,7 @@ userRouter.post("/signin", async (req, res) => {
 // Sign up
 userRouter.post("/signup", async (req, res) => {
   // Check if user already exists
+  console.log("hello world")
   if (await User.findOne({ email: req.body.email })) {
     res.status(401).send({ message: "Email already exists." });
     return;
@@ -45,7 +46,7 @@ userRouter.post("/signup", async (req, res) => {
 
   // Save user
   const createdUser = await user.save();
-
+  console.log(req.body, "req")
   // Send details and jwt token
   res.send({
     _id: createdUser._id,

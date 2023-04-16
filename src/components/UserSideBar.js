@@ -5,7 +5,7 @@ import Drawer from "@material-ui/core/Drawer";
 import Button from "@material-ui/core/Button";
 import { getUser, userinfo } from "../utils/auth";
 import { CryptoState } from "./Cryptocontext";
-import { IconChartLine, IconTrash } from "@tabler/icons"
+import { IconChartLine, IconTrash } from "@tabler/icons";
 const useStyles = makeStyles((theme) => ({
   list: {
     width: 250,
@@ -52,7 +52,7 @@ const useStyles = makeStyles((theme) => ({
     coin: {
       border: "1px solid red",
       outline: "5px pink",
-    }
+    },
   },
 }));
 
@@ -86,9 +86,6 @@ export default function TemporaryDrawer() {
 
     setState({ ...state, [anchor]: open });
   };
-
-
-
 
   return (
     <div>
@@ -142,37 +139,36 @@ export default function TemporaryDrawer() {
                   {user &&
                     user.watchlist &&
                     user.watchlist.map((e) => (
-                      <div style={{
-                        display: "flex",
-                        background: "#4265f5",
-                        width:"100%",
-                        justifyContent:"center",
-                        alignItems:"center",
-                        height:"50px",
-                        borderRadius: "5rem"
-
-                      }}
+                      <div
+                        style={{
+                          display: "flex",
+                          background: "#4265f5",
+                          width: "100%",
+                          justifyContent: "center",
+                          alignItems: "center",
+                          height: "50px",
+                          borderRadius: "5rem",
+                        }}
                       >
-                        <div style={{marginRight:"15px", marginLeft:"10px"}}>
+                        <div
+                          style={{ marginRight: "15px", marginLeft: "10px" }}
+                        >
                           <IconChartLine />
                         </div>
-                        <span
-                          style={{ fontSize: 15 }}
-                        >
-                          {e}
-                        </span>
-                        
-                        <button style={{
-                          marginLeft:"auto", 
-                          marginRight:"10px", 
-                          color:"white", 
-                          background:"#4265f5", 
-                          outline:"none", 
-                          border:"none"
-                          }}>
-                          <IconTrash/>
-                        </button>
+                        <span style={{ fontSize: 15 }}>{e}</span>
 
+                        <button
+                          style={{
+                            marginLeft: "auto",
+                            marginRight: "10px",
+                            color: "white",
+                            background: "#4265f5",
+                            outline: "none",
+                            border: "none",
+                          }}
+                        >
+                          <IconTrash />
+                        </button>
                       </div>
                     ))}
                 </div>

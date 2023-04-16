@@ -13,7 +13,7 @@ export function addToWatchlist(coinId, handleAlert) {
   console.log("Coin Id", coinId);
 
   axios
-    .post("https://backend-782.herokuapp.com/watchlist/add", {
+    .post("http://localhost:5001/watchlist/add", {
       email: user.email,
       coinId: coinId,
     })
